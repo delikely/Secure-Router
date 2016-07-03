@@ -1,2 +1,3 @@
 # Secure-Router
-Powered by Openwrt
+- Powered by Openwrt
+- Base on NFC
