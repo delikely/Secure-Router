@@ -3,8 +3,7 @@
 //55 55 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 03 FD D4 14 01 17 00
 //成功的话PN532就会返回
 //00 00 FF 00 FF 00 00 00 FF 02 FE D5 15 16 00
-//添加了send_recv函数 模块化
-
+//串口接受到的数据放在read_buf中
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -73,6 +72,12 @@ int main()
     printf("start send and receive data\n");
     //唤醒
     send_recv(fd,wake,24,read_buf,15);
+//    for(i=0;i<15;i++)
+//    {
+//        printf("%02X ",read_buf[i]);
+//    }
+//    printf("\n");
+
     while(1)
     {
         //读取卡信息
@@ -108,8 +113,10 @@ int send_recv(int fd,char write_buf[],int send_len,char read_buf[],int recv_len)
         {
             for(i=0;i<len;i++)
             {
+                read_buf[i]=temp_buf[i];
                 printf("%02X ",temp_buf[i]);
             }
+
             printf("\n");
             break;
         }
